@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        @media (max-width: 768px) {
+            .order-summary-container {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-10">
+    <div class="w-full max-w-5xl bg-white rounded-lg shadow-md flex flex-col md:flex-row">
+        <!-- Left Side: Order Details -->
+        <div class="w-full md:w-2/3 p-4 md:p-8">
+            <div class="flex flex-row mx-2 gap-4">
+                <span class="flex items-center justify-center w-8 h-8 bg-white border-2 border-purple-500 rounded-full inline-flex ml-2">
+                <i class="fa-solid fa-check text-purple-500 text-md"></i>
+                </span>
+                <h2 class="text-2xl font-semibold mb-4">Thank you, <span id="customer-name"></span>!</h2>
+            </div>
+            <div class="border-2 p-5 rounded-lg">
+                <p class="text-lg mb-4 flex items-center">
+                    Your order is confirmed! 
+                </p>
+                
+                <p class="text-gray-600">You'll receive a confirmation email with your order number shortly.</p>
+            </div>
+            <div class="border-2 p-5 rounded-lg mt-4">
+                <h3 class="text-xl font-semibold mb-2">Order details</h3>
+                <div class="mb-4 flex">
+                    <div class="mr-5 md:mr-14">
+                        <p class="font-medium">Contact Information</p>
+                        <p id="contact-email"></p>
+                        <p id="contact-number"></p>
+                    </div>
+                    <div>
+                        <p class="font-medium">Payment Method</p>
+                        <p>Card ending in **** <span id="last-four-digits"></span> - USD <span id="payment-amount"></span></p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="mb-4 mr-6">
+                        <p class="font-medium">Shipping Address</p>
+                        <p id="shipping-address"></p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-medium">Billing Address</p>
+                        <p id="billing-address"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 flex justify-between items-center">
+                <h3 class="text-sm">Need Help? <span class="text-purple-500 underline"><a href="#"> Contact Us </a></span></h3>
+                <button type="button" onclick="window.location.href='checkout.html'" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+        <!-- Right Side: Order Summary -->
+        <div class="w-full md:w-1/2 p-8 bg-gray-200 order-summary-container">
+            <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
+            <div id="order-summary" class="space-y-4">
+            </div>
+        </div>
+    </div>
+
+    <script src="confirmation.js"></script>
+</body>
+</html>

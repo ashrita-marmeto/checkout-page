@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-10">
+    <div class="w-full max-w-5xl bg-white p-8 rounded-lg shadow-md">
+        <div class="flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-8">
+            <!-- Payment Details -->
+            <div class="w-full md:w-2/3">
+                <h2 class="text-xl font-semibold mb-2">Payment</h2>
+                <hr class="mb-4 border-t">
+
+                <form id="payment-form" onsubmit="return validateForm()" method="POST">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-medium mb-2">Pay With:</h3>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="payment" value="card" class="form-radio text-green-600" checked onclick="togglePaymentMethod('card')">
+                                <span class="ml-2 text-gray-700">Card</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="payment" value="cod" class="form-radio text-green-600" onclick="togglePaymentMethod('cod')">
+                                <span class="ml-2 text-gray-700">COD</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Details -->
+                    <div id="card-details" class="space-y-4">
+                        <div>
+                            <label for="card-number" class="block text-gray-700 mb-2">Card Number</label>
+                            <input type="text" id="card-number" name="card_number" placeholder="1234 5678 9101 1121" 
+                                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                   maxlength="19"  inputmode="numeric" title="Card number must be exactly 16 digits" required>
+                        </div>
+                        <div class="flex space-x-4">
+                            <div class="w-1/2">
+                                <label for="expiry-date" class="block text-gray-700 mb-2">Expiration Date</label>
+                                <input type="text" id="expiry-date" name="expiry_date" placeholder="MM/YY" 
+                                       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                       maxlength="5" pattern="(0[1-9]|1[0-2])\/\d{2}" inputmode="numeric" title="Expiry date must be in MM/YY format" required>
+                            </div>
+                            <div class="w-1/2">
+                                <label for="cvv" class="block text-gray-700 mb-2">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123" 
+                                       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                                       maxlength="3" pattern="\d{3}" inputmode="numeric" title="CVV must be exactly 3 digits" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="saveCard" name="save_card" class="form-checkbox text-green-500">
+                                <span class="ml-2">Save card details</span>
+                            </label>
+                        </div>
+                        <button type="submit" id="pay-button" 
+                                class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            Pay $295.62
+                        </button>
+                    </div>
+                    
+                    <!-- COD Button -->
+                    <div id="cod-details" class="hidden">
+                        <button type="submit" onclick="window.location.href='confirmation.html'"  class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            Place order
+                        </button>
+                    </div>
+                </form>
+
+                <p class="text-gray-600 text-sm mt-4">
+                    Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our 
+                    <a href="#" class="text-blue-500 underline">privacy policy</a>.
+                </p>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="w-full">
+                <h2 class="text-xl font-semibold mb-2">Order Summary</h2>
+                <div id="order-summary" class="mb-4 pt-4 border-t"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>
